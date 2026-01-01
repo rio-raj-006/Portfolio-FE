@@ -1,5 +1,5 @@
 
-# NexusDev Portfolio - Frontend
+# Rajkumar.dev Portfolio - Frontend
 
 A high-end, professional software developer portfolio built with **React 19**, **TypeScript**, and **Tailwind CSS**. This application is designed to function as the frontend layer of a two-tier architecture, fetching all content dynamically from a Spring Boot backend.
 
@@ -27,7 +27,7 @@ The application uses the following core libraries:
 1. **Clone the repository**:
    ```bash
    git clone <your-repo-url>
-   cd nexusdev-portfolio
+   cd Rajkumar.dev-portfolio
    ```
 
 2. **Install dependencies**:

@@ -77,7 +77,7 @@ const ProjectDetails = () => {
           </div>
           <div>
             <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1 font-mono">Role</p>
-            <p className="text-zinc-200">Lead Developer</p>
+            <p className="text-zinc-200">Java Developer</p>
           </div>
           <div>
             <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1 font-mono">Github</p>
