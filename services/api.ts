@@ -1,6 +1,3 @@
-
-import { GoogleGenAI } from "@google/genai";
-
 const API_BASE_URL = "https://python-portfolio-kn9o.onrender.com/api";
 
 const handleResponse = async (response) => {
@@ -48,19 +45,14 @@ export const contactService = {
 
 export const aiService = {
   chat: async (message) => {
-    // Initializing GoogleGenAI with API_KEY from environment variables
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
-    // Using gemini-3-flash-preview for general Q&A as per guidelines
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: message,
-      config: {
-        systemInstruction: "You are Rajkumar's AI assistant. You are a world-class software engineer expert in Banking systems, Apache Fineract, and Spring Boot. Answer questions about Rajkumar's professional background, technical skills, and projects based on his portfolio. Keep responses concise and informative.",
-      }
+    // Calling the backend API endpoint for AI chat
+    const response = await fetch(`${API_BASE_URL}/ai/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message }),
     });
-
-    // Extract generated text directly from response.text property
-    return response.text;
+    const data = await handleResponse(response);
+    // Assuming backend returns { reply: "..." }
+    return data.reply;
   }
 };

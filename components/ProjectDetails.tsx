@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
@@ -176,12 +175,11 @@ const ProjectDetails = () => {
             <span className="text-emerald-500 font-mono">04.</span> Tech Stack
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Fix: Casting Object.entries(project.techStack) as any to handle potential unknown types during map */}
-            {project.techStack && (Object.entries(project.techStack) as any[]).map(([category, techs]) => (
+            {project.techStack && Object.entries(project.techStack).map(([category, techs]) => (
               <div key={category} className="space-y-4">
                 <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-emerald-400 font-mono">{category}</h3>
                 <ul className="space-y-2">
-                  {/* Fix: Casting techs as any[] to resolve 'unknown' type error during map */}
+                  {/* Fix: Cast techs to any[] to resolve 'unknown' map error */}
                   {(techs as any[]).map((tech) => (
                     <li key={tech} className="text-zinc-400 text-sm py-2 px-4 rounded-lg bg-zinc-900/50 border border-zinc-800">
                       {tech}
