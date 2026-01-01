@@ -16,6 +16,12 @@ export interface Skill {
   level: string;
 }
 
+export interface SkillsResponse {
+  skills: {
+    [category: string]: Skill[];
+  };
+}
+
 export interface Project {
   id: number;
   title: string;

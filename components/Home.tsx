@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.error("Home API Error:", err);
         setError(true);
         setLoading(false);
       });
@@ -33,8 +33,24 @@ const Home: React.FC = () => {
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
-        <h2 className="text-xl font-bold text-red-400 mb-2">Connection Error</h2>
-        <p className="text-zinc-500">Unable to reach the backend API at localhost:8080</p>
+        <div className="p-8 bg-zinc-900 rounded-3xl border border-red-500/20 shadow-2xl max-w-md">
+          <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-zinc-100 mb-2">API Connection Failed</h2>
+          <p className="text-zinc-400 mb-6">Unable to retrieve profile data from the backend. Please check your network connection or if the API is active.</p>
+          <div className="text-xs font-mono p-3 bg-black rounded border border-zinc-800 text-zinc-500 mb-6 overflow-hidden text-ellipsis whitespace-nowrap">
+            https://python-portfolio-kn9o.onrender.com/api
+          </div>
+          <button 
+            onClick={() => window.location.reload()}
+            className="w-full py-3 bg-zinc-100 text-zinc-950 font-bold rounded-xl hover:bg-white transition-colors"
+          >
+            Retry Connection
+          </button>
+        </div>
       </div>
     );
   }

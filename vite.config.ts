@@ -5,3 +5,4 @@ export default defineConfig({
   plugins: [react()],
   base: '/Portfolio-FE/', // required for GitHub Pages
 })
+

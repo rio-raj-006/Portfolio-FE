@@ -3,12 +3,14 @@ import {
   ProfileSummary, 
   AboutInfo, 
   Skill, 
+  SkillsResponse,
   Project, 
   ContactForm, 
   ContactResponse 
 } from '../types';
 
 const API_BASE_URL = 'https://python-portfolio-kn9o.onrender.com/api';
+
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
@@ -29,7 +31,7 @@ export const profileService = {
 };
 
 export const skillService = {
-  getSkills: async (): Promise<Skill[]> => {
+  getSkills: async (): Promise<SkillsResponse> => {
     const response = await fetch(`${API_BASE_URL}/skills`);
     return handleResponse(response);
   }
