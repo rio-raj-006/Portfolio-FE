@@ -4,7 +4,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://imrajkumarselvaraj.github.io/Portfolio-FE/",
+  "homepage": "https://rio-raj-006.github.io/Portfolio-FE",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
