@@ -7,7 +7,7 @@
   "homepage": "https://rio-raj-006.github.io/Portfolio-FE",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/rio-raj-006/Portfolio-FE.git"
 
