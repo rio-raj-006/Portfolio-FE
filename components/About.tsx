@@ -1,10 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { profileService } from '../services/api';
-import { AboutInfo } from '../types';
 
-const About: React.FC = () => {
-  const [about, setAbout] = useState<AboutInfo | null>(null);
+const About = () => {
+  const [about, setAbout] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

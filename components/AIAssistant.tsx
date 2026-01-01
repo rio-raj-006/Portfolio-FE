@@ -1,10 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { aiService } from '../services/api';
-import { ChatMessage } from '../types';
 
-const AIAssistant: React.FC = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([
+const AIAssistant = () => {
+  const [messages, setMessages] = useState([
     {
       id: '1',
       role: 'assistant',
@@ -14,7 +13,7 @@ const AIAssistant: React.FC = () => {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -25,7 +24,7 @@ const AIAssistant: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
-    const userMessage: ChatMessage = {
+    const userMessage = {
       id: Date.now().toString(),
       role: 'user',
       content: input,
@@ -39,20 +38,21 @@ const AIAssistant: React.FC = () => {
     try {
       const response = await aiService.chat(input);
       
-      const aiMessage: ChatMessage = {
+      const aiMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: response,
+        // Handling potential undefined response from Gemini API
+        content: response || "I'm sorry, I couldn't generate a response at the moment. Please try again.",
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error(error);
-      const errorMessage: ChatMessage = {
+      const errorMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "I'm having trouble connecting to my brain right now. Please ensure the backend server is running.",
+        content: "I'm having trouble connecting to my brain right now. Please ensure the API is reachable.",
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -70,7 +70,7 @@ const AIAssistant: React.FC = () => {
             <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
             <div>
               <h3 className="font-bold text-zinc-100">AI Portfolio Agent</h3>
-              <p className="text-xs text-zinc-500">Connected to Backend</p>
+              <p className="text-xs text-zinc-500">Powered by Gemini</p>
             </div>
           </div>
         </div>

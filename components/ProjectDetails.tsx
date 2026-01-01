@@ -1,23 +1,21 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Project } from '../types';
 
-const ProjectDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+const ProjectDetails = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data asynchronously instead of using problematic ESM imports for JSON
     fetch('./data/projects.json')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load project details');
         return res.json();
       })
       .then(data => {
-        const foundProject = (data as Project[]).find(p => p.id === id);
+        const foundProject = data.find((p) => p.id === id);
         if (foundProject) {
           setProject(foundProject);
         }
@@ -178,11 +176,13 @@ const ProjectDetails: React.FC = () => {
             <span className="text-emerald-500 font-mono">04.</span> Tech Stack
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {project.techStack && Object.entries(project.techStack).map(([category, techs]) => (
+            {/* Fix: Casting Object.entries(project.techStack) as any to handle potential unknown types during map */}
+            {project.techStack && (Object.entries(project.techStack) as any[]).map(([category, techs]) => (
               <div key={category} className="space-y-4">
                 <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-emerald-400 font-mono">{category}</h3>
                 <ul className="space-y-2">
-                  {(techs as string[]).map((tech: string) => (
+                  {/* Fix: Casting techs as any[] to resolve 'unknown' type error during map */}
+                  {(techs as any[]).map((tech) => (
                     <li key={tech} className="text-zinc-400 text-sm py-2 px-4 rounded-lg bg-zinc-900/50 border border-zinc-800">
                       {tech}
                     </li>

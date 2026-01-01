@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="py-10 text-center border-t border-zinc-900/50">
       <div className="flex justify-center gap-6 mb-4">

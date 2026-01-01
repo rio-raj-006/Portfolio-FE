@@ -1,18 +1,17 @@
 
 import React, { useState } from 'react';
 import { contactService } from '../services/api';
-import { ContactForm } from '../types';
 
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<ContactForm>({
+const Contact = () => {
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [apiResponse, setApiResponse] = useState<{ status: string; message: string } | null>(null);
+  const [apiResponse, setApiResponse] = useState(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setApiResponse(null);
@@ -29,7 +28,7 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };

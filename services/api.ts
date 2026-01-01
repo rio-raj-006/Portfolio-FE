@@ -1,17 +1,9 @@
 
-import { 
-  ProfileSummary, 
-  AboutInfo, 
-  Skill, 
-  SkillsResponse,
-  Project, 
-  ContactForm, 
-  ContactResponse 
-} from '../types';
+import { GoogleGenAI } from "@google/genai";
 
 const API_BASE_URL = "https://python-portfolio-kn9o.onrender.com/api";
 
-const handleResponse = async (response: Response) => {
+const handleResponse = async (response) => {
   if (!response.ok) {
     throw new Error(`API Error: ${response.statusText}`);
   }
@@ -19,32 +11,32 @@ const handleResponse = async (response: Response) => {
 };
 
 export const profileService = {
-  getSummary: async (): Promise<ProfileSummary> => {
+  getSummary: async () => {
     const response = await fetch(`${API_BASE_URL}/profile/summary`);
     return handleResponse(response);
   },
-  getAbout: async (): Promise<AboutInfo> => {
+  getAbout: async () => {
     const response = await fetch(`${API_BASE_URL}/profile/about`);
     return handleResponse(response);
   }
 };
 
 export const skillService = {
-  getSkills: async (): Promise<SkillsResponse> => {
+  getSkills: async () => {
     const response = await fetch(`${API_BASE_URL}/skills`);
     return handleResponse(response);
   }
 };
 
 export const projectService = {
-  getProjects: async (): Promise<Project[]> => {
+  getProjects: async () => {
     const response = await fetch(`${API_BASE_URL}/projects`);
     return handleResponse(response);
   }
 };
 
 export const contactService = {
-  submitForm: async (data: ContactForm): Promise<ContactResponse> => {
+  submitForm: async (data) => {
     const response = await fetch(`${API_BASE_URL}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -55,13 +47,20 @@ export const contactService = {
 };
 
 export const aiService = {
-  chat: async (message: string): Promise<string> => {
-    const response = await fetch(`${API_BASE_URL}/ai/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message }),
+  chat: async (message) => {
+    // Initializing GoogleGenAI with API_KEY from environment variables
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    
+    // Using gemini-3-flash-preview for general Q&A as per guidelines
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: message,
+      config: {
+        systemInstruction: "You are Rajkumar's AI assistant. You are a world-class software engineer expert in Banking systems, Apache Fineract, and Spring Boot. Answer questions about Rajkumar's professional background, technical skills, and projects based on his portfolio. Keep responses concise and informative.",
+      }
     });
-    const data = await handleResponse(response);
-    return data.reply;
+
+    // Extract generated text directly from response.text property
+    return response.text;
   }
 };

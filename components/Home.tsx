@@ -1,11 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { profileService } from '../services/api';
-import { ProfileSummary } from '../types';
 import { Link } from 'react-router-dom';
 
-const Home: React.FC = () => {
-  const [summary, setSummary] = useState<ProfileSummary | null>(null);
+const Home = () => {
+  const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 

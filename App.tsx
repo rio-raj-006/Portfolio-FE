@@ -11,7 +11,7 @@ import AIAssistant from './components/AIAssistant';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-emerald-500/30 selection:text-emerald-400">

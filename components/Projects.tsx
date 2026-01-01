@@ -1,22 +1,20 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Project } from '../types';
 
-const Projects: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+const Projects = () => {
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // Using fetch instead of import to avoid module resolution/alias issues
     fetch('./data/projects.json')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load projects');
         return res.json();
       })
       .then(data => {
-        setProjects(data as Project[]);
+        setProjects(data);
         setLoading(false);
       })
       .catch(err => {

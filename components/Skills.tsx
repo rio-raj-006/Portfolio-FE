@@ -1,15 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { skillService } from '../services/api';
-import { SkillsResponse, Skill } from '../types';
 
-const Skills: React.FC = () => {
-  const [groupedSkills, setGroupedSkills] = useState<SkillsResponse | null>(null);
+const Skills = () => {
+  const [groupedSkills, setGroupedSkills] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     skillService.getSkills().then(data => {
-      // Ensure we have a valid object to prevent crashes on initial render
       setGroupedSkills(data || { skills: {} });
       setLoading(false);
     }).catch(err => {
@@ -18,7 +16,7 @@ const Skills: React.FC = () => {
     });
   }, []);
 
-  const getLevelColor = (level: string) => {
+  const getLevelColor = (level) => {
     if (!level) return 'text-zinc-400 border-zinc-500/30 bg-zinc-500/5';
     switch(level.toLowerCase()) {
       case 'advanced': return 'text-emerald-400 border-emerald-500/30 bg-emerald-500/5';
@@ -35,9 +33,7 @@ const Skills: React.FC = () => {
     );
   }
 
-  // Determine the source of the skills mapping. 
-  // Handle cases where the API might return { skills: { ... } } or just the mapping itself.
-  const skillsSource = groupedSkills?.skills || (groupedSkills as any) || {};
+  const skillsSource = groupedSkills?.skills || groupedSkills || {};
   const skillEntries = Object.entries(skillsSource).filter(([_, items]) => Array.isArray(items));
 
   return (
@@ -55,7 +51,8 @@ const Skills: React.FC = () => {
                 // {category}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {(items as Skill[]).map((skill: Skill, index: number) => (
+                {/* Fix: Casting items to any[] to resolve 'unknown' type error during map */}
+                {(items as any[]).map((skill, index) => (
                   <div 
                     key={`${category}-${index}`} 
                     className="p-5 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-all group"
