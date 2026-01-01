@@ -74,20 +74,3 @@ Change this constant if your backend is hosted on a different port or domain.
 
 ## 📝 License
 MIT
-
-For the deployment in gitpages, use the below commands :
-
-
-1️⃣ Build the project
-npm run build
-
-
-This generates the production-ready dist/ folder that GitHub Pages serves.
-
-2️⃣ Deploy to GitHub Pages
-npm run deploy
-
-
-This builds (if your deploy script includes npm run build) and pushes the dist/ folder to GitHub Pages.
-
-Your live site will update automatically.

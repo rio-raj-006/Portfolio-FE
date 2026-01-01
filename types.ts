@@ -23,10 +23,27 @@ export interface SkillsResponse {
 }
 
 export interface Project {
-  id: number;
+  id: string;
   title: string;
-  description: string;
-  technologies: string[];
+  domain: string;
+  projectType: string;
+  duration: string;
+  overview: string;
+  problemStatement: string;
+  solution: string;
+  keyFeatures: string[];
+  responsibilities: string[];
+  architecture: {
+    description: string;
+    components: string[];
+  };
+  techStack: {
+    backend: string[];
+    database: string[];
+    integration: string[];
+    tools: string[];
+  };
+  impact: string[];
   githubUrl: string | null;
   demoUrl: string | null;
 }
