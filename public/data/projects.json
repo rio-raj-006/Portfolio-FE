@@ -41,7 +41,7 @@
       "backend": ["Java", "Spring Boot", "Apache Fineract"],
       "database": ["MySQL", "PostgreSQL"],
       "integration": ["REST APIs", "Scheduler Jobs"],
-      "tools": ["Jenkins", "Git"]
+      "tools": ["Jenkins", "Git", "Bitbucket", "IntelliJ IDE", "Linux", "Gradle", "Docker"]
     },
     "impact": [
       "Eliminated manual repayment and accounting processes",
