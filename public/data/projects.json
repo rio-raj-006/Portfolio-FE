@@ -51,5 +51,57 @@
     ],
     "githubUrl": null,
     "demoUrl": null
+  },
+  {
+    "id": "loan-bond-management-system",
+    "title": "Loan & Bond Management System",
+    "domain": "Banking / Financial Services",
+    "projectType": "Enterprise System",
+    "duration": "2023 – 2024",
+    "overview": "A centralized Loan and Bond Management System built to manage the complete lifecycle of loans and bonds, automate repayment schedules, and integrate accounting and external financial platforms.",
+    "problemStatement": "The organization relied on multiple independent systems for loan origination, accounting, and investment tracking. Repayment schedules and accounting entries were handled manually, leading to operational inefficiencies and data inconsistencies.",
+    "solution": "Implemented a centralized Loan and Bond Management System using Apache Fineract as the core engine. The system automated repayment schedules, generated accounting entries, and synchronized data with external systems using APIs and scheduled jobs.",
+    "keyFeatures": [
+      "Loan and bond lifecycle management",
+      "Automated repayment schedule generation",
+      "Support for bond sale and payout events",
+      "Floating interest rate implementation",
+      "Automated accounting entry creation",
+      "Integration with external systems using REST APIs",
+      "Scheduler-based synchronization jobs"
+    ],
+    "responsibilities": [
+      "Configured and deployed Apache Fineract (UI and backend)",
+      "Developed and customized a bond management module",
+      "Customized core Fineract logic based on business requirements",
+      "Implemented bond sale logic with repayment schedule recalculation",
+      "Implemented floating interest rate functionality",
+      "Customized repayment schedule behavior beyond default Fineract capabilities",
+      "Enhanced and fixed issues in existing loan management modules",
+      "Customized charges and fee handling logic"
+    ],
+    "architecture": {
+      "description": "The system integrates a Loan Origination System, a centralized Loan Management System, and an Accounting system through REST APIs and scheduled jobs.",
+      "components": [
+        "Loan Origination System",
+        "Loan & Bond Management System (Apache Fineract)",
+        "Accounting / General Ledger System",
+        "External Investment Platform"
+      ]
+    },
+    "techStack": {
+      "backend": ["Java", "Spring Boot", "Apache Fineract"],
+      "database": ["MySQL", "PostgreSQL"],
+      "integration": ["REST APIs", "Scheduler Jobs"],
+      "tools": ["Jenkins", "Git", "Bitbucket", "IntelliJ IDE", "Linux", "Gradle", "Docker"]
+    },
+    "impact": [
+      "Eliminated manual repayment and accounting processes",
+      "Reduced operational errors and data inconsistencies",
+      "Improved system reliability and financial accuracy",
+      "Enabled real-time visibility into loan and bond data"
+    ],
+    "githubUrl": null,
+    "demoUrl": null
   }
 ]
