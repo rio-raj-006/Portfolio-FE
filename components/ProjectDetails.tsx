@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
@@ -77,7 +78,7 @@ const ProjectDetails = () => {
           </div>
           <div>
             <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1 font-mono">Role</p>
-            <p className="text-zinc-200">Java Developer</p>
+            <p className="text-zinc-200">Lead Developer</p>
           </div>
           <div>
             <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1 font-mono">Github</p>
@@ -174,18 +175,23 @@ const ProjectDetails = () => {
           <h2 className="text-2xl font-bold text-zinc-100 mb-10 flex items-center gap-4">
             <span className="text-emerald-500 font-mono">04.</span> Tech Stack
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
             {project.techStack && Object.entries(project.techStack).map(([category, techs]) => (
               <div key={category} className="space-y-4">
-                <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-emerald-400 font-mono">{category}</h3>
-                <ul className="space-y-2">
-                  {/* Fix: Cast techs to any[] to resolve 'unknown' map error */}
+                <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-emerald-400 font-mono border-b border-zinc-800 pb-2">
+                  {category}
+                </h3>
+                {/* Refactored: Items now wrap horizontally to adjust as the list grows */}
+                <div className="flex flex-wrap gap-2">
                   {(techs as any[]).map((tech) => (
-                    <li key={tech} className="text-zinc-400 text-sm py-2 px-4 rounded-lg bg-zinc-900/50 border border-zinc-800">
+                    <span 
+                      key={tech} 
+                      className="text-zinc-300 text-xs py-1.5 px-3 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-900 transition-all cursor-default"
+                    >
                       {tech}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
